@@ -36,5 +36,63 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 ## Project Structure
-e-commerce-project/ │── src/ │   ├── app/                   # Root Next.js App Router │   │   ├── layout.tsx         # Layout │   │   ├── page.tsx           # Home page │   │   ├── auth/              # Authentication (Login,Register) │   │   │   ├── login/page.tsx │   │   │   ├── register/page.tsx │   │   ├── dashboard/         # Khu vực dành cho user đăng nhập │   │   │   ├── page.tsx       # Trang Dashboard chính │   │   │   ├── orders/page.tsx   # Lịch sử đơn hàng │   │   │   ├── profile/page.tsx  # Hồ sơ người dùng │   │   ├── products/          # Trang sản phẩm │   │   │   ├── page.tsx       # Danh sách sản phẩm │   │   │   ├── [id]/page.tsx  # Chi tiết sản phẩm │   │   ├── cart/              # Trang giỏ hàng │   │   │   ├── page.tsx │   │   ├── checkout/          # Trang thanh toán │   │   │   ├── page.tsx │   │   ├── admin/             # Khu vực dành cho admin │   │   │   ├── page.tsx       # Trang Admin Dashboard │   │   │   ├── products/page.tsx  # Quản lý sản phẩm │   │   │   ├── orders/page.tsx    # Quản lý đơn hàng │   ├── components/            # Tái sử dụng UI components │   │   ├── layout/            # Các layout chính │   │   │   ├── AuthLayout.tsx │   │   │   ├── DashboardLayout.tsx │   │   │   ├── AdminLayout.tsx │   │   ├── ui/                # Các component UI nhỏ (button, input,...) │   │   ├── products/          # Component liên quan đến sản phẩm │   │   ├── cart/              # Component liên quan đến giỏ hàng │   │   ├── auth/              # Component liên quan đến đăng nhập/đăng ký │   ├── store/                 # Redux Toolkit store │   │   ├── store.ts           # Cấu hình store │   │   ├── hooks.ts           # Custom hooks │   │   ├── slices/            # Redux slices │   │   │   ├── authSlice.ts   # Xử lý trạng thái authentication │   │   │   ├── cartSlice.ts   # Xử lý trạng thái giỏ hàng │   │   │   ├── productSlice.ts  # Xử lý trạng thái sản phẩm │   ├── services/              # Gọi API │   │   ├── api.ts             # Cấu hình API fetch │   │   ├── authService.ts     # API cho authentication │   │   ├── productService.ts  # API cho sản phẩm │   │   ├── orderService.ts    # API cho đơn hàng │   ├── utils/                 # Helper functions │   │   ├── formatPrice.ts     # Format giá tiền │   │   ├── validateForm.ts    # Hàm validate form │   ├── styles/                # Global styles │   ├── config/                # Các config chung │   │   ├── constants.ts       # Chứa hằng số (key token, API base URL,...) │   │   ├── env.ts             # Load biến môi trường │── public/                    # Static assets (images, icons, fonts,...) │── .eslintrc.js                # Cấu hình ESLint │── .prettierrc                 # Cấu hình Prettier │── next.config.js              # Cấu hình Next.js │── tsconfig.json               # Cấu hình TypeScript │── package.json                # Dependencies │── README.md                   # Hướng dẫn dự án
+e-commerce-project/
+│── src/
+│   ├── app/                   # Root Next.js App Router
+│   │   ├── layout.tsx         # Layout tổng thể của ứng dụng
+│   │   ├── page.tsx           # Trang Home (Landing Page)
+│   │   ├── auth/              # Các trang authentication (Login, Register)
+│   │   │   ├── login/page.tsx
+│   │   │   ├── register/page.tsx
+│   │   ├── dashboard/         # Khu vực dành cho user đăng nhập
+│   │   │   ├── page.tsx       # Trang Dashboard chính
+│   │   │   ├── orders/page.tsx   # Lịch sử đơn hàng
+│   │   │   ├── profile/page.tsx  # Hồ sơ người dùng
+│   │   ├── products/          # Trang sản phẩm
+│   │   │   ├── page.tsx       # Danh sách sản phẩm
+│   │   │   ├── [id]/page.tsx  # Chi tiết sản phẩm
+│   │   ├── cart/              # Trang giỏ hàng
+│   │   │   ├── page.tsx
+│   │   ├── checkout/          # Trang thanh toán
+│   │   │   ├── page.tsx
+│   │   ├── admin/             # Khu vực dành cho admin
+│   │   │   ├── page.tsx       # Trang Admin Dashboard
+│   │   │   ├── products/page.tsx  # Quản lý sản phẩm
+│   │   │   ├── orders/page.tsx    # Quản lý đơn hàng
+│   ├── components/            # Tái sử dụng UI components
+│   │   ├── layout/            # Các layout chính
+│   │   │   ├── AuthLayout.tsx
+│   │   │   ├── DashboardLayout.tsx
+│   │   │   ├── AdminLayout.tsx
+│   │   ├── ui/                # Các component UI nhỏ (button, input,...)
+│   │   ├── products/          # Component liên quan đến sản phẩm
+│   │   ├── cart/              # Component liên quan đến giỏ hàng
+│   │   ├── auth/              # Component liên quan đến đăng nhập/đăng ký
+│   ├── store/                 # Redux Toolkit store
+│   │   ├── store.ts           # Cấu hình store
+│   │   ├── hooks.ts           # Custom hooks
+│   │   ├── slices/            # Redux slices
+│   │   │   ├── authSlice.ts   # Xử lý trạng thái authentication
+│   │   │   ├── cartSlice.ts   # Xử lý trạng thái giỏ hàng
+│   │   │   ├── productSlice.ts  # Xử lý trạng thái sản phẩm
+│   ├── services/              # Gọi API
+│   │   ├── api.ts             # Cấu hình API fetch
+│   │   ├── authService.ts     # API cho authentication
+│   │   ├── productService.ts  # API cho sản phẩm
+│   │   ├── orderService.ts    # API cho đơn hàng
+│   ├── utils/                 # Helper functions
+│   │   ├── formatPrice.ts     # Format giá tiền
+│   │   ├── validateForm.ts    # Hàm validate form
+│   ├── styles/                # Global styles
+│   ├── config/                # Các config chung
+│   │   ├── constants.ts       # Chứa hằng số (key token, API base URL,...)
+│   │   ├── env.ts             # Load biến môi trường
+│── public/                    # Static assets (images, icons, fonts,...)
+│── .eslintrc.js                # Cấu hình ESLint
+│── .prettierrc                 # Cấu hình Prettier
+│── next.config.js              # Cấu hình Next.js
+│── tsconfig.json               # Cấu hình TypeScript
+│── package.json                # Dependencies
+│── README.md                   # Hướng dẫn dự án
+
 
