@@ -64,6 +64,8 @@ e-commerce-project/
 │   │   │   ├── AuthLayout.tsx
 │   │   │   ├── DashboardLayout.tsx
 │   │   │   ├── AdminLayout.tsx
+│   │   │   ├── Navbar.tsx
+│   │   │   ├── Sidebar.tsx
 │   │   ├── ui/                # Các component UI nhỏ (button, input,...)
 │   │   ├── products/          # Component liên quan đến sản phẩm
 │   │   ├── cart/              # Component liên quan đến giỏ hàng

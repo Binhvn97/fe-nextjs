@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { User } from "@/types/user";
 import { loginAPI, registerAPI, refreshTokenAPI } from "@/services/authService";
+import { AuthResponse } from "@/types/auth";
 
 interface AuthState {
   isAuthenticated: boolean;
@@ -13,9 +14,9 @@ const initialState: AuthState = {
 };
 
 // ✅ Gọi API đăng nhập
-export const loginUser = createAsyncThunk(
+export const loginUser = createAsyncThunk<AuthResponse, { email: string; password: string }>(
   "auth/login",
-  async (credentials: { email: string; password: string }, { rejectWithValue }) => {
+  async (credentials, { rejectWithValue }) => {
     try {
       const response = await loginAPI(credentials);
       localStorage.setItem("token", response.token);
