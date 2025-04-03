@@ -11,7 +11,7 @@ import FormInput from "@/components/form/FormInput";
 
 // Schema kiểm tra dữ liệu đầu vào
 const loginSchema = z.object({
-  email: z.string().email("Email không hợp lệ"),
+  username: z.string().nonempty("Username không hợp lệ"),
   password: z.string().min(6, "Mật khẩu phải có ít nhất 6 ký tự"),
 });
 
@@ -33,7 +33,7 @@ export default function LoginPage() {
   const onSubmit = async (data: LoginFormValues) => {
     try {
       const result = await dispatch(loginUser(data)).unwrap();
-      if (result.success) {
+      if (result.authenticated) {
         router.push("/dashboard");
       } else {
         setError("Sai email hoặc mật khẩu!");
@@ -47,18 +47,19 @@ export default function LoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-slate-50">
       <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-lg">
         <div>
-          <h2 className="text-2xl font-semibold text-center text-gray-600 mb-6">Đăng nhập</h2>
+          <h2 className="text-2xl font-semibold text-center text-gray-600 mb-6">
+            Đăng nhập
+          </h2>
 
           {error && <p className="text-red-500 text-sm text-center">{error}</p>}
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <FormInput
-              label="Email"
-              type="email"
+              label="Username"
               required={true}
-              placeholder="Nhập email của bạn"
-              {...register("email")}
-              error={errors.email?.message}
+              placeholder="Nhập username của bạn"
+              {...register("username")}
+              error={errors.username?.message}
             />
 
             <FormInput
@@ -85,7 +86,9 @@ export default function LoginPage() {
           <button
             className="text-gray-500 hover:cursor-pointer"
             onClick={() => router.push("/auth/register")}
-          >Đăng ký</button>
+          >
+            Đăng ký
+          </button>
         </div>
       </div>
     </div>
